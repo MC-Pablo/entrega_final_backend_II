@@ -1,0 +1,69 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/css/index.css">
+    <title>Document</title>
+  </head>
+  <body>
+
+    <header>
+      <h1>NOTIFICACIONES</h1>
+    </header>
+
+    <main class="container-home">
+      <section>
+        <h3>Envío de correos con NodeMailer</h3>
+
+        <div>
+          <form
+            method="post"
+            action="/api/email/send"
+            enctype="multipart/form-data"
+          >
+            <div>
+              <label htmlFor="to">Para</label>
+              <input type="email" name="to" id="to" />
+            </div>
+            <div>
+              <label htmlFor="subject">Asunto</label>
+              <input type="text" name="subject" id="subject" />
+            </div>
+            <div>
+              <label htmlFor="content">Mensaje</label>
+              <input type="text" name="content" id="content" />
+            </div>
+            <div>
+              <label htmlFor="file">Adjunto</label>
+              <input type="file" name="file" id="file" />
+            </div>
+
+            <input type="submit" value="Aceptar" />
+          </form>
+        </div>
+      </section>
+
+      <br />
+
+      <section>
+        <h3>Envío de mensajes SMS con Twilio</h3>
+
+        <div>
+          <form method="post" action="/api/messages/send">
+            <div>
+              <label htmlFor="number">Para</label>
+              <input type="text" name="number" id="number" value="+54" />
+            </div>
+            <div>
+              <label htmlFor="content">Mensaje</label>
+              <input type="text" name="content" id="content" />
+            </div>
+
+            <input type="submit" value="Aceptar" />
+          </form>
+        </div>
+      </section>
+    </main>
+
+  </body>
+</html>
