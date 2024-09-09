@@ -16,11 +16,20 @@ const ticketSchema = new Schema({
     default: Date.now,
     required: [true, "La fecha de compra es obligatoria"]
   },
-  amount: {
-    type: Number,
-    required: [true, "El monto es obligatorio"],
-    min: [0, "El monto debe ser mayor o igual a 0"]
-  },
+  products: [
+    {
+      product_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Product', // Referencia al modelo de producto
+        required: [true, "El ID del producto es obligatorio"]
+      },
+      amount: {
+        type: Number,
+        required: [true, "La cantidad del producto es obligatoria"],
+        min: [1, "La cantidad debe ser al menos 1"]
+      }
+    }
+  ],
   purchaser: {
     type: String,
     required: [true, "El correo del comprador es obligatorio"],
