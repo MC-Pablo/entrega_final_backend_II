@@ -8,18 +8,22 @@ export default class UserDTO {
             email: model.email,
             roles: model.roles,
         };
-    }
+    };
 
     fromData(data) {
-        const name = data.fullName?.split(" ");
+        if (!data.fullName) {
+            throw new Error("El nombre es obligatorio");
+        }
+
+        const name = data.fullName.split(" ");
 
         return {
             id: data.id || null,
-            name: name[0] ?? "",
-            surname: name[1] ?? "",
+            name: name[0] || "",
+            surname: name[1] || "",
             email: data.email,
             password: data.password ? createHash(data.password) : null,
             roles: data.roles,
         };
     }
-}
+};

@@ -50,6 +50,7 @@ export default class UserController {
     // Eliminar un usuario por su ID
     async delete(req, res) {
         try {
+            
             const user = await this.#userService.deleteOneById(req.params.id);
             res.sendSuccess200(user);
         } catch (error) {

@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "start": "node ./src/server.js --env=PROD",
-        "dev": "nodemon ./src/server.js",
+        "dev": "nodemon --watch --no-warnings ./src/server.js",
         "stop": "killall -9 node",
         "stop-windows": "taskkill /F /IM node.exe",
         "lint": "eslint ./src --fix"
