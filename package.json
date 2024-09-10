@@ -8,19 +8,19 @@
         "start": "node ./src/server.js --env=PROD",
         "dev": "nodemon ./src/server.js",
         "stop": "killall -9 node",
-          "stop-windows": "taskkill /F /IM node.exe",
+        "stop-windows": "taskkill /F /IM node.exe",
         "lint": "eslint ./src --fix"
     },
     "repository": {
-    "type": "git",
-    "url": "https://github.com/MC-Pablo/entrega_final_backend_II.git"
-  },
+        "type": "git",
+        "url": "https://github.com/MC-Pablo/entrega_final_backend_II.git"
+    },
     "keywords": [],
     "author": "Pablo Conturso",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/MC-Pablo/entrega_final_backend_II/issues"
-      },
+    },
     "dependencies": {
         "@infobip-api/sdk": "^0.3.2",
         "bcrypt": "^5.1.1",
@@ -40,7 +40,8 @@
         "passport": "^0.7.0",
         "passport-jwt": "^4.0.1",
         "socket.io": "^4.7.5",
-        "twilio": "^5.2.3"
+        "twilio": "^5.2.3",
+        "uuid": "^10.0.0"
     },
     "devDependencies": {
         "eslint": "^8.57.0",

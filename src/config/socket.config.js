@@ -1,10 +1,10 @@
 import { Server } from "socket.io";
-import IngredientService from "../services/ingredient.service.js";
+import ProductService from "../services/product.service.js";
 import { writeFile } from "../utils/fileSystem.js";
 import paths from "../utils/paths.js";
 import { generateNameForFile } from "../utils/random.js";
 
-const ingredientService = new IngredientService();
+const productService = new ProductService();
 let serverSocket = null;
 
 // Configura el servidor Socket
@@ -19,41 +19,41 @@ export const config = (serverHTTP) => {
 
     // Escucha el evento de conexión de un nuevo socket
     serverSocket.on("connection", async (socket) => {
-        const response = await ingredientService.findAll({ limit: 100 });
+        const response = await productService.findAll({ limit: 100 });
         console.log("Socket connected");
 
-        // Envía la lista de ingredientes al cliente que se conecta
-        serverSocket.emit("ingredients-list", response);
+        // Envía la lista de productes al cliente que se conecta
+        serverSocket.emit("products-list", response);
 
-        // Escucha el evento para insertar un nuevo ingrediente
-        socket.on("insert-ingredient", async (data) => {
+        // Escucha el evento para insertar un nuevo producte
+        socket.on("insert-product", async (data) => {
             if (data?.file) {
                 const filename = generateNameForFile(data.file.name);
                 await writeFile(paths.images, filename, data.file.buffer);
 
-                await ingredientService.insertOne(data, filename);
-                const response = await ingredientService.findAll({ limit: 100 });
+                await productService.insertOne(data, filename);
+                const response = await productService.findAll({ limit: 100 });
 
-                // Envía la lista de ingredientes actualizada después de insertar
-                serverSocket.emit("ingredients-list", response);
+                // Envía la lista de productes actualizada después de insertar
+                serverSocket.emit("products-list", response);
             }
         });
 
-        // Escucha el evento para eliminar un ingrediente
-        socket.on("delete-ingredient", async (data) => {
-            await ingredientService.deleteOneById(data.id);
-            const response = await ingredientService.findAll({ limit: 100 });
+        // Escucha el evento para eliminar un producte
+        socket.on("delete-product", async (data) => {
+            await productService.deleteOneById(data.id);
+            const response = await productService.findAll({ limit: 100 });
 
-            // Envía la lista de ingredientes actualizada después de eliminar
-            serverSocket.emit("ingredients-list", response);
+            // Envía la lista de productes actualizada después de eliminar
+            serverSocket.emit("products-list", response);
         });
     });
 };
 
-// Función para actualizar la lista de ingredientes
-export const updateIngredientsList = async () => {
-    const response = await ingredientService.findAll({ limit: 100 });
+// Función para actualizar la lista de productes
+export const updateProductsList = async () => {
+    const response = await productService.findAll({ limit: 100 });
 
-    // Envía la lista de ingredientes actualizada
-    serverSocket.emit("ingredients-list", { response });
+    // Envía la lista de productes actualizada
+    serverSocket.emit("products-list", { response });
 };
