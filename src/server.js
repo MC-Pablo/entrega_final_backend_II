@@ -10,7 +10,6 @@ import { config as configCORS } from "./config/cors.config.js";
 import { connectDB } from "./config/mongoose.config.js";
 
 import EmailRouter from "./routers/api/email.router.js";
-import MessageRouter from "./routers/api/message.router.js";
 import SessionRouter from "./routers/api/session.router.js";
 import CartRouter from "./routers/api/cart.router.js";
 import ProductRouter from "./routers/api/product.router.js";
@@ -42,7 +41,6 @@ configCORS(server);
 
 // Enrutadores
 server.use("/api/email", new EmailRouter().getRouter());
-server.use("/api/messages/", new MessageRouter().getRouter());
 server.use("/api/carts", new CartRouter().getRouter());
 server.use("/api/products", new ProductRouter().getRouter());
 server.use("/api/sessions", new SessionRouter().getRouter());
