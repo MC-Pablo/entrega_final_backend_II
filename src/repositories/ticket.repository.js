@@ -13,7 +13,7 @@ export default class TicketRepository {
         this.#ticketDTO = new TicketDTO();
     }
 
-    // Obtener todos los ticketos aplicando filtros
+    // Obtener todos los tickets aplicando filtros
     async findAll(params) {
         const $and = [];
 
@@ -27,7 +27,7 @@ export default class TicketRepository {
         return tickets;
     }
 
-    // Obtener un ticketo por su ID
+    // Obtener un ticket por su ID
     async findOneById(id) {
         const ticket = await this.#ticketDAO.findOneById(id);
         if (!ticket) throw new Error(ERROR_NOT_FOUND_ID);
@@ -35,14 +35,15 @@ export default class TicketRepository {
         return this.#ticketDTO.fromModel(ticket);
     }
 
-    // Crear o actualizar un ticketo
-    async save(data) {
-        const ticketDTO = this.#ticketDTO.fromData(data);
+    // Crear o actualizar un ticket
+    async save(data, email) {
+        const info = {...data,email}
+        const ticketDTO = this.#ticketDTO.fromData(info);
         const ticket = await this.#ticketDAO.save(ticketDTO);
         return this.#ticketDTO.fromModel(ticket);
     }
 
-    // Eliminar un ticketo por su ID
+    // Eliminar un ticket por su ID
     async deleteOneById(id) {
         const ticket = await this.findOneById(id);
         await this.#ticketDAO.deleteOneById(id);
