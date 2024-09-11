@@ -43,6 +43,6 @@ export const deleteFile = async (filepath, filename) => {
             console.warn("El archivo no existe.");
         } else {
             throw new Error("Error al eliminar el archivo");
-        }
-    }
+        }
+    }
 };

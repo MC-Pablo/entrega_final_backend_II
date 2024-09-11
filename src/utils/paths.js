@@ -16,4 +16,4 @@ const paths = {
     views: path.join(ROOT_PATH, "src", "views"),
 };
 
-export default paths;
+export default paths;

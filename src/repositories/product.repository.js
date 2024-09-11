@@ -47,5 +47,5 @@ export default class ProductRepository {
         const product = await this.findOneById(id);
         await this.#productDAO.deleteOneById(id);
         return product;
-    }
+    }
 }

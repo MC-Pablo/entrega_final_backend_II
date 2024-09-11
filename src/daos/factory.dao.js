@@ -23,8 +23,10 @@ export default class FactoryDAO {
             return new MongoDAO(User);
         }
     }
-    createTicket (clasName) {
-        if (clasName === MONGODB)
+
+    createTicket(className) {
+        if (className === MONGODB) {
             return new MongoDAO(Ticket);
-    }
+        }
+    }
 }

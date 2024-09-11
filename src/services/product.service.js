@@ -48,6 +48,8 @@ export default class ProductService {
 
     // Eliminar un producto por su ID
     async deleteOneById(id) {
+        const product = await this.#productRepository.findOneById(id);
+        await deleteFile(paths.images, product.thumbnail)
         return await this.#productRepository.deleteOneById(id);
-    }
+    }
 }
