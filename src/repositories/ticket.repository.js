@@ -37,7 +37,9 @@ export default class TicketRepository {
 
     // Crear o actualizar un ticket
     async save(data, email) {
-        const info = {...data,email}
+
+        const info = {products: data, email}
+
         const ticketDTO = this.#ticketDTO.fromData(info);
         const ticket = await this.#ticketDAO.save(ticketDTO);
         return this.#ticketDTO.fromModel(ticket);
@@ -49,4 +51,4 @@ export default class TicketRepository {
         await this.#ticketDAO.deleteOneById(id);
         return ticket;
     }
-}
+};

@@ -1,11 +1,17 @@
 import CartRepository from "../repositories/cart.repository.js";
+import TicketRepository from "../repositories/ticket.repository.js";
+import ProductRepository from "../repositories/product.repository.js";
 import { ERROR_NOT_FOUND_INDEX } from "../constants/messages.constant.js";
 
 export default class CartService {
     #cartRepository;
+    #ticketRepository;
+    #productRepository;
 
     constructor() {
         this.#cartRepository = new CartRepository();
+        this.#ticketRepository = new TicketRepository();
+        this.#productRepository = new ProductRepository();
     }
 
     // Obtener todas las recetas aplicando filtros
@@ -80,4 +86,29 @@ export default class CartService {
 
         return await this.#cartRepository.save(cart);
     }
-}
+
+    async purcharse(cid, data) {
+        const cart = await this.#cartRepository.findOneById(cid);
+
+        const conflictProducts = [];
+
+        for(const item of cart.products) {
+            const product = await this.#productRepository.findOneById(item.product);
+            if(product.stock < item.quantity) {
+                conflictProducts.push({product: item.product, currentQuantity: item.quantity, availableStock: product.stock})
+            }
+        }
+        if(conflictProducts.length > 0) {
+            return {succes:false, conflictProducts}
+        }
+
+        for(const item of cart.products) {
+            const product = await this.#productRepository.findOneById(item.product);
+            product.stock -= item.quantity;
+            await this.#productRepository.save(product) 
+        }
+        const ticket = await this.#ticketRepository.save(cart.products, data.email)
+        await this.#cartRepository.deleteOneById(cid)
+        return {succes: true, ticket: ticket.id, code: ticket.code}
+    }
+};
