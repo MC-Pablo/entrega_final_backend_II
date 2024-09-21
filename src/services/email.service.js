@@ -21,7 +21,7 @@ export default class EmailService {
                 pass: process.env.SMTP_PASSWORD,
             },
         });
-    }
+    };
 
     // Método público para enviar un correo electrónico
     async send(to, subject, content, filename) {
@@ -49,5 +49,5 @@ export default class EmailService {
         if (filename) {
             await deleteFile(paths.images, filename);
         }
-    }
-}
+    };
+};
