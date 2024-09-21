@@ -8,13 +8,11 @@
   <body>
 
     <header>
-      <h1>NOTIFICACIONES</h1>
+      <h1>Envío de correos con NodeMailer</h1>
     </header>
 
     <main class="container-home">
       <section>
-        <h3>Envío de correos con NodeMailer</h3>
-
         <div>
           <form
             method="post"
@@ -43,26 +41,6 @@
         </div>
       </section>
 
-      <br />
-
-      <section>
-        <h3>Envío de mensajes SMS con Twilio</h3>
-
-        <div>
-          <form method="post" action="/api/messages/send">
-            <div>
-              <label htmlFor="number">Para</label>
-              <input type="text" name="number" id="number" value="+54" />
-            </div>
-            <div>
-              <label htmlFor="content">Mensaje</label>
-              <input type="text" name="content" id="content" />
-            </div>
-
-            <input type="submit" value="Aceptar" />
-          </form>
-        </div>
-      </section>
     </main>
 
   </body>

@@ -1,67 +1,55 @@
+/* index.css */
+
 body {
   font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
 }
 
 header {
-  background-color: #333;
+  background-color: #4CAF50;
   color: white;
-  padding: 10px 0;
+  padding: 1rem;
   text-align: center;
 }
 
-h1 {
-  margin: 0;
-}
-
 .container-home {
-  padding: 20px;
-  background-color: #e0f7fa; /* Color de fondo */
-  border: 1px solid #00796b; /* Borde */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-}
-
-section {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
   background-color: white;
-  margin-bottom: 20px;
-  padding: 20px;
-  border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h3 {
-  margin-top: 0;
-}
-
 form div {
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
 input[type="email"],
 input[type="text"],
 input[type="file"] {
   width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 input[type="submit"] {
-  background-color: #333;
+  background-color: #4CAF50;
   color: white;
+  padding: 0.75rem 1.5rem;
   border: none;
-  padding: 10px 20px;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 5px;
 }
 
 input[type="submit"]:hover {
-  background-color: #555;
+  background-color: #45a049;
 }
